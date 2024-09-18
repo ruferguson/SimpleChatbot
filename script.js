@@ -4,34 +4,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function sendMessage() {
     const userInput = document.getElementById('user-input').value;
-    if (userInput.trim() === '') return;
+    // if (userInput.trim() === '') return;
 
     appendMessage('user', userInput);
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const apiKey = 'MY_API_KEY'; // Replace with your actual API key
+
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+    const data = {
+        contents: [
+            {
+                parts: [
+                    { text: userInput }
+                ]
+            }
+        ]
+    };
+
+    const response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer API-KEY-HERE'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            model: 'gpt3.5-turbo',
-            messages: [
-                { role: 'system', content: 'You are an unhelpful assistant.'},
-                { role: 'user', content: userInput}
-            ],
-            max_tokens: 150
-        })
+        body: JSON.stringify(data)
     });
     
-    if (response.ok) {
-        const data = await response.json();
-        const botReply = data.choices[0].text.trim();
+    if (response.ok) { // check to see if the (response) fetch request was successful
+        const responseData = await response.json();
+        const botReply = responseData.candidates[0].content.parts[0].text;
         appendMessage('bot', botReply);
     } else {
         appendMessage('bot', 'Error: Unable to fetch response from the server.');
     }
     document.getElementById('user-input').value = '';
+    
 }
 
 function appendMessage(sender, message) {
