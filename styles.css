@@ -3,6 +3,125 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: mediumvioletred;
+    background-color: #b08968;
     height: 100vh;
+}
+
+#submit-container {
+    display: flex;
+    align-items: center;
+}
+
+#outer-container {
+    width: 60vw;
+    max-height: 80vh;
+    border-radius: 30px;
+    background-color: #7f5539;
+    padding: 10px;
+    display: flex;
+    overflow-y: hidden;
+}
+
+#chat-container {
+    width: 60vw;
+    border: 2px solid #ede0d4;
+    border-radius: 30px;
+    background-color: #ede0d4;
+    margin: 18px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: hidden;
+}
+
+#chat-box {
+    background-color: #ede0d4;
+    padding: 10px;
+    height: 350px;
+    overflow-y: auto;
+    border: 1px solid #ede0d4;
+    border-radius: 20px;
+    margin: 10px;
+    margin-bottom: 10px;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ede0d4;
+    border-radius: 15px;
+    margin-right: 10px;
+    font-family: monospace;
+    outline: none;
+    caret-color: #7f5539;
+}
+
+#user-input:focus {
+    border: 1px solid #ddb892;
+    box-shadow: 0 0 5px #b08968;
+}
+
+#send-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #b08968;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#send-button:hover {
+background-color: #7f5539;
+}
+
+.message.bot {
+    color:#000000;
+    background-color: #ddb892;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px;
+    max-width: 30vw;
+    font-family: monospace;
+}
+
+.message.user {
+    color:#000000;
+    background-color: #e6ccb2;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 5px;
+    max-width: 30vw;
+    margin-left: auto; 
+    margin-right: 0;
+    font-family: monospace;
+}
+
+#chat-box::-webkit-scrollbar {
+    width: 0.8em;
+    height: 1;
+    border-radius: 20px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 8px rgba(45, 45, 45, 0.3);
+    border-radius: 20px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: #b08968;
+    border-radius: 20px;
+}
+
+/* Markdown styling */
+.message.bot h1, .message.bot h2, .message.bot h3 {
+    color: #333;
+}
+
+.message.bot strong {
+    font-weight: bold;
+}
+
+.message.bot em {
+    font-style: italic;
 }
